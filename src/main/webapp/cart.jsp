@@ -37,9 +37,11 @@
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/main.jsp">KATHENA Club</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/main.jsp">
+                <i class="bi-lightning-charge-fill text-warning"></i> K.ATHENA
+            </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
@@ -47,25 +49,41 @@
             
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/main.jsp">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold" href="${pageContext.request.contextPath}/main.jsp">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/shop.jsp">Shop</a></li>
                 </ul>
                 
                 <div class="d-flex align-items-center">
                     <c:choose>
+                        <%-- 1. 로그인 안 했을 때 --%>
                         <c:when test="${empty sessionScope.loginUser}">
-                            <a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-outline-dark me-2">Login</a>
+                            <a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-outline-dark me-2">로그인</a>
+                            <a href="${pageContext.request.contextPath}/join.jsp" class="btn btn-primary">회원가입</a>
                         </c:when>
+                        
+                        <%-- 2. 로그인 했을 때 --%>
                         <c:otherwise>
                             <div class="me-3 text-end">
-                                <span class="small text-secondary d-block">Hello!</span>
-                                <span class="fw-bold">${sessionScope.loginUser.name}</span>
-                                <span class="badge bg-primary ms-1">
+                                <span class="d-block small text-secondary">반갑습니다!</span>
+                                <span class="fw-bold text-dark">${sessionScope.loginUser.name}</span>님
+                                <span class="badge rounded-pill bg-primary ms-1">
                                     <fmt:formatNumber value="${sessionScope.loginUser.point}" pattern="#,###"/> P
                                 </span>
                             </div>
-                            <a href="${pageContext.request.contextPath}/mypage.jsp" class="btn btn-sm btn-outline-secondary me-2">My</a>
-                            <a href="${pageContext.request.contextPath}/logoutAction.jsp" class="btn btn-sm btn-danger">Logout</a>
+                            
+                            <c:if test="${sessionScope.loginUser.role == 'ADMIN'}">
+                                <div class="btn-group me-2">
+                                    <a href="${pageContext.request.contextPath}/admin_add.jsp" class="btn btn-sm btn-warning" title="상품등록">
+                                        <i class="bi-box-seam"></i>
+                                    </a>
+                                    <a href="${pageContext.request.contextPath}/admin_member_list.jsp" class="btn btn-sm btn-info text-white" title="회원관리">
+                                        <i class="bi-people-fill"></i>
+                                    </a>
+                                </div>
+                            </c:if>
+
+                            <a href="${pageContext.request.contextPath}/mypage.jsp" class="btn btn-sm btn-outline-secondary me-2">내 정보</a>
+                            <a href="${pageContext.request.contextPath}/logoutAction.jsp" class="btn btn-sm btn-danger">로그아웃</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
