@@ -1,0 +1,70 @@
+:root {
+    /* 1. 메인 포인트 색상 (기본: 파란색 -> 변경 예: 오렌지 #ff9900, 보라 #6f42c1) */
+    --main-color: #9CCBE3; 
+    
+    /* 2. 배경 색상 (기본: 연회색) */
+    --bg-color: #f8f9fa;
+    
+    /* 3. 네비게이션 바 색상 (기본: 흰색) */
+    --nav-bg: #3d3d3d; 
+    
+    --font-family: 'Malgun Gothic', sans-serif;
+    
+    --nav-text-color: #ffffff;
+}
+
+/* ==================================================
+   [덮어쓰기] 부트스트랩 디자인을 내 스타일로 변경
+   ================================================== */
+
+/* 전체 배경색 변경 */
+body {
+    background-color: var(--bg-color) !important;
+    font-family: 'Malgun Gothic', sans-serif; /* 폰트 변경 */
+}
+
+/* 네비게이션 바 스타일 변경 */
+.navbar {
+    background-color: var(--nav-bg) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 아래 그림자 살짝 추가 */
+}
+.btn-outline-dark me-2 {
+            color: #ffffff !important;        /* 글자색: 파란색 (원하는 색으로 변경 가능) */
+            border-color: #007bff !important; /* 테두리색: 글자색과 맞춤 */
+            background-color: transparent !important;
+            font-weight: bold;
+        }
+
+/* 'KATHENA Club' 로고 텍스트 */
+.navbar-brand {
+    color: var(--main-color) !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+/* 메인 버튼 (btn-primary) 색상을 내 포인트 색상으로 변경 */
+.btn-primary {
+    background-color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
+}
+
+/* 버튼에 마우스 올렸을 때 좀 더 어둡게 */
+.btn-primary:hover {
+    filter: brightness(90%); 
+}
+
+/* 카드(상품 박스) 모서리를 둥글게 */
+.card {
+    border-radius: 15px !important; 
+    border: none !important; /* 테두리 없애기 */
+}
+
+/* 카드 이미지 높이 고정 */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
